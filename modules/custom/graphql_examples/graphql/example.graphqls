@@ -1,0 +1,36 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  article(id: Int!): Article
+  articles(
+    offset: Int = 0
+    limit: Int = 10
+  ): ArticleConnection!
+}
+
+type Article {
+  id: Int!
+  title: String!
+  image: String
+  changed: String!
+  created: String!
+  status: String
+  author: String
+}
+
+type ArticleConnection {
+  total: Int!
+  items: [Article!]
+}
+
+type Mutation {
+  createArticle(data: ArticleInput): Article
+}
+
+input ArticleInput {
+  title: String!
+  description: String
+}
